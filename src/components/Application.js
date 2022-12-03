@@ -4,25 +4,6 @@ import React, { useState, useEffect } from "react";
 import Appointment from "./Appointment";
 import axios from 'axios';
 
-
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
-
 const appointments = {
   "1": {
     id: 1,
@@ -78,6 +59,14 @@ export default function Application(props) {
       })
   }, [])
 
+  useEffect(() => {
+    console.log('value', value)
+  }, [value])
+
+  const handleSetDay = (day) => {
+    setValue(day)
+  }
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -90,7 +79,7 @@ export default function Application(props) {
         <nav className="sidebar__menu">
 
           {/* <DayList days={days} day={day} setDay={setDay} /> */}
-          <DayList days={days} day={value} setDay={setValue} />
+          <DayList days={days} day={value} setDay={handleSetDay} />
 
 
 
