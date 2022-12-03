@@ -1,38 +1,46 @@
 import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 
 
 
 export default function Form(props) {
-  const [studentName, setStudentName] = useState(props.student ? props.student : "")
+  const [student, setStudent] = useState(props.student || "");
+  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  function reset() {
+    setStudent("")
+    setInterviewer(null)
+    props.onCancel()
+  }
+  function cancel() {
+    reset()
+  }
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form onSubmit={event => event.preventDefault()} autoComplete="off">
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
             placeholder="Enter Student Name"
-            /*
-              This must be a controlled component
-              your code goes here
-            */
-            value={studentName}
-            onChange={event => setStudentName(event.target.value)}
+
+            value={student}
+            onChange={event => setStudent(event.target.value)}
           />
         </form>
         <InterviewerList
           interviewers={props.interviewers}
-          interviewer={props.interviewer}
+          interviewer={interviewer}
+          onChange={setInterviewer}
 
         />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={props.onCancel}>Cancel</Button>
+          <Button danger onClick={cancel}>Cancel</Button>
           <Button confirm onClick={props.onSave}>Save</Button>
         </section>
       </section>
