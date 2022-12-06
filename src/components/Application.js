@@ -3,69 +3,56 @@ import DayList from "./DayList";
 import React, { useState, useEffect } from "react";
 import Appointment from "./Appointment";
 import axios from 'axios';
-
-const appointments = {
-  "1": {
-    id: 1,
-    time: "12pm",
-  },
-  "2": {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 3,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  "3": {
-    id: 3,
-    time: "2pm",
-  },
-  "4": {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Archie Andrews",
-      interviewer: {
-        id: 4,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg",
-      }
-    }
-  },
-  "5": {
-    id: 5,
-    time: "4pm",
-  }
-};
+import { getAppointmentsForDay, getInterview } from "../helpers/selectors";
 
 export default function Application(props) {
-  const appointmentsArray = Object.values(appointments)
 
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {},
+    interviewers: {}
+  });
 
-  const [value, setValue] = useState("Monday");
+  const appointments = getAppointmentsForDay(state, state.day);
 
-  const [days, setDays] = useState([]);
+  const handleSetDay = (day) => {
+    console.log('daye', day)
+    setState(prev => ({ ...prev, day: day }))
+  }
+
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+    console.log('interview', interview)
+
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
+  });
 
   useEffect(() => {
-    axios.get('api/days')
-      .then(response => {
-        console.log(response)
-        setDays([...response.data])
-      })
+    Promise.all([
+      axios.get('api/days'),
+      axios.get('api/interviewers'),
+      axios.get('api/appointments')
+    ]).then((response) => {
+      console.log(response);
+      setState(prev => ({ ...prev, days: response[0].data }))
+      setState(prev => ({ ...prev, interviewers: response[1].data }))
+      setState(prev => ({ ...prev, appointments: response[2].data }))
+      console.log('interviewers', response[2].data)
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    console.log('value', value)
-  }, [value])
-
-  const handleSetDay = (day) => {
-    setValue(day)
-  }
+    console.log('interviewers', state.appointments.interviewers)
+  }, [state, state.interviewers])
 
   return (
     <main className="layout">
@@ -77,12 +64,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-
-          {/* <DayList days={days} day={day} setDay={setDay} /> */}
-          <DayList days={days} day={value} setDay={handleSetDay} />
-
-
-
+          <DayList days={state.days} day={state.day} setDay={handleSetDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -92,14 +74,7 @@ export default function Application(props) {
         {/* Replace this with the sidebar elements during the "Project Setup & Familiarity" activity. */}
       </section>
       <section className="schedule">
-        {appointmentsArray.map(appointment =>
-          <Appointment
-            key={appointment.id}
-            id={appointment.id}
-            time={appointment.time}
-            interview={appointment.interview}
-          />
-        )}
+        {schedule}
       </section>
     </main>
   );
