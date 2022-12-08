@@ -3,7 +3,7 @@ import DayList from "./DayList";
 import React, { useState, useEffect } from "react";
 import Appointment from "./Appointment";
 import axios from 'axios';
-import { getAppointmentsForDay, getInterview } from "../helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
 
 export default function Application(props) {
 
@@ -14,23 +14,41 @@ export default function Application(props) {
     interviewers: {}
   });
 
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    console.log(id, interview);
+    setState({
+      ...state,
+      appointments
+    });
+
+  }
   const appointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
 
   const handleSetDay = (day) => {
     console.log('daye', day)
-    setState(prev => ({ ...prev, day: day }))
+    setState(prev => ({ ...prev, day }))
   }
 
   const schedule = appointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
-    console.log('interview', interview)
 
+    const interview = getInterview(state, appointment.interview);
     return (
       <Appointment
         key={appointment.id}
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        bookInterview={bookInterview}
+        interviewers={interviewers}
       />
     );
   });
@@ -41,18 +59,17 @@ export default function Application(props) {
       axios.get('api/interviewers'),
       axios.get('api/appointments')
     ]).then((response) => {
-      console.log(response);
-      setState(prev => ({ ...prev, days: response[0].data }))
-      setState(prev => ({ ...prev, interviewers: response[1].data }))
-      setState(prev => ({ ...prev, appointments: response[2].data }))
-      console.log('interviewers', response[2].data)
+      setState(prev => ({
+        ...prev,
+        days: response[0].data,
+        interviewers: response[1].data,
+        appointments: response[2].data
+      }))
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    console.log('interviewers', state.appointments.interviewers)
-  }, [state, state.interviewers])
+  console.log('appointments', appointments)
 
   return (
     <main className="layout">

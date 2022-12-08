@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -15,6 +15,15 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    }
+    props.bookInterview(props.id, interview)
+    transition(SHOW)
+  };
+
   function handleEditClick() {
     console.log("Edit click")
   }
@@ -27,6 +36,8 @@ export default function Appointment(props) {
   function handleOnCancel() {
     back()
   }
+
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -41,8 +52,11 @@ export default function Appointment(props) {
       }
 
       {mode === CREATE && <Form
-        interviewers={[]}
+        interviewers={props.interviewers}
         onCancel={handleOnCancel}
+        onSave={(name, interviewer) => {
+          save(name, interviewer);
+        }}
 
       />
       }
