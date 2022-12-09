@@ -22,7 +22,9 @@ function getAppointmentsForDay(state, dayName) {
 
 function getInterviewersForDay(state, day) {
   let interviewersForDay = [];
-
+  if (!state.interviewers) {
+    return interviewersForDay
+  }
   const resultDay = state.days.filter(d => d.name === day);
   if (resultDay[0] !== undefined) {
     const interviewers = Object.values(state.interviewers);
@@ -45,8 +47,9 @@ function getInterview(state, interview) {
       const interviewerString = interviewer.toString()
       result["interviewer"] = state.interviewers[interviewerString];
       result["student"] = student;
+      return result;
     }
-    return result;
+    return null
   }
 };
 module.exports = { getAppointmentsForDay, getInterview, getInterviewersForDay }
