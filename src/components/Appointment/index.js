@@ -22,14 +22,16 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
   function save(name, interviewer) {
+    console.log('save', name, interviewer)
     const interview = {
       student: name,
       interviewer
     };
     transition(SAVING);
-    props
-      .bookInterview(props.id, interview)
-    transition(SHOW)
+    Promise.resolve(
+      props.bookInterview(props.id, interview)
+    )
+      .then(() => transition(SHOW))
   };
   function handleEditClick() {
     console.log("Edit click")
@@ -49,6 +51,7 @@ export default function Appointment(props) {
   function handleAddClick() {
     transition(CREATE)
   }
+
   function handleOnCancel() {
     back()
   }
@@ -58,7 +61,7 @@ export default function Appointment(props) {
     <article className="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={handleAddClick} />}
-      {mode === SHOW &&
+      {mode === SHOW && props.interview &&
         <Show
           onEdit={handleEditClick}
           onDelete={handleDeleteClick}
