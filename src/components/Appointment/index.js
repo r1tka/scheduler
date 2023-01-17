@@ -37,10 +37,13 @@ export default function Appointment(props) {
   function handleDeleteClick(id) {
     console.log("Delete click")
     transition(CONFIRM, true)
+
     // Promise.resolve(props.cancelInterview(id))
     //   .then(() => transition(EMPTY))
     //   .catch((error) => { transition(ERROR_DELETE, true); console.log(error) });
   }
+
+
 
   function handleAddClick() {
     transition(CREATE)
@@ -77,6 +80,9 @@ export default function Appointment(props) {
           message={"Are you sure you would like to delete?"}
           onCancel={() => {
             transition(SHOW);
+          }}
+          onConfirm={() => {
+            transition(DELETING)
           }}
         />
       )}
