@@ -33,6 +33,7 @@ function getInterviewersForDay(state, day) {
       interviewersForDay.push(interviewers[element - 1]);
     });
   }
+  console.log('interviewers:::::', interviewersForDay)
   return interviewersForDay;
 }
 

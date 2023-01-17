@@ -9,7 +9,7 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 
 
 
-export default function Application(props) {
+export default function Application() {
   //custom hook for all data for Application
   const {
     state,
@@ -18,6 +18,7 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
   //selectors
+  console.log('state::::', state)
   const appointments = getAppointmentsForDay(state, state.day);
 
   const interviewers = getInterviewersForDay(state, state.day);
