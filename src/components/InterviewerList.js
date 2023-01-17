@@ -1,20 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import "components/InterviewerList.scss";
+
 import InterviewerListItem from "components/InterviewerListItem";
 
 export default function InterviewerList(props) {
+  // console.log('int Props', props.interviewer)
 
-
+  //check if prop passed in this component is not other then:
+  InterviewerList.propTypes = {
+    value: PropTypes.number,
+    setInterviewer: PropTypes.func.isRequired
+  };
   //render InterviewerListItem
   const list = props.interviewers.map((interviewer) => {
+    const { id, name, avatar } = interviewer;
+    console.log('id', id)
+
+
     return (
       <InterviewerListItem
-        key={interviewer.id}
-        name={interviewer.name}
-        avatar={interviewer.avatar}
-        selected={interviewer.id === props.interviewer}
-        setInterviewer={() => props.onChange(interviewer.id)}
+        key={id}
+        name={name}
+        avatar={avatar}
+        selected={id === props.interviewer}
+        setInterviewer={event => props.setInterviewer(id)}
       />
     )
   })
