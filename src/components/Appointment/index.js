@@ -12,8 +12,10 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
-const CONFIRM = "CONFIRM"
+const CONFIRM = "CONFIRM";
 const ERROR_DELETE = "ERROR_DELETE";
+const EDIT = "EDIT";
+
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
@@ -29,10 +31,9 @@ export default function Appointment(props) {
       .bookInterview(props.id, interview)
     transition(SHOW)
   };
-
-
   function handleEditClick() {
     console.log("Edit click")
+    transition(EDIT)
   }
   function handleDeleteClick(id) {
     console.log("Delete click")
@@ -74,6 +75,17 @@ export default function Appointment(props) {
         }}
 
       />
+      }
+      {mode === EDIT &&
+        <Form
+          name={props.interview.student}
+          interviewer={props.interview.interviewer.id}
+          interviewers={props.interviewers}
+          onSave={(name, interviewer) => {
+            save(name, interviewer);
+          }}
+          onCancel={() => transition(SHOW)}
+        />
       }
       {mode === CONFIRM && (
         <Confirm
