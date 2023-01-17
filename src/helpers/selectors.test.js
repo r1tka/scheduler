@@ -4,12 +4,14 @@ const state = {
     {
       id: 1,
       name: "Monday",
-      appointments: [1, 2, 3]
+      appointments: [1, 2, 3],
+      interviewers: [1, 2, 3]
     },
     {
       id: 2,
       name: "Tuesday",
-      appointments: [4, 5]
+      appointments: [4, 5],
+      interviewers: [3, 4]
     }
   ],
   appointments: {
@@ -26,20 +28,31 @@ const state = {
       time: "4pm",
       interview: { student: "Chad Takahashi", interviewer: 2 }
     },
-    interviewers: {
-      "1": {
-        "id": 1,
-        "name": "Sylvia Palmer",
-        "avatar": "https://i.imgur.com/LpaY82x.png"
-      },
-      "2": {
-        id: 2,
-        name: "Tori Malcolm",
-        avatar: "https://i.imgur.com/Nmx0Qxo.png"
-      }
+  },
+  interviewers: {
+    "1": {
+      "id": 1,
+      "name": "Sylvia Palmer",
+      "avatar": "https://i.imgur.com/LpaY82x.png"
+    },
+    "2": {
+      id: 2,
+      name: "Tori Malcolm",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png"
+    },
+    "3": {
+      id: 3,
+      name: "Tony Gilmor",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png"
+    },
+    "4": {
+      id: 4,
+      name: "Anna Sirs",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png"
     }
   }
 };
+
 
 
 test("getAppointmentsForDay returns an array", () => {

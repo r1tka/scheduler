@@ -20,7 +20,7 @@ export default function Counter(props) {
   }, [times])
 
   useEffect(() => {
-    console.log('this is array', array)
+    // console.log('this is array', array)
   }, [array])
 
 
