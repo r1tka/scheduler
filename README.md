@@ -52,8 +52,7 @@ npm run storybook
 
 !["Blank student name"](https://github.com/r1tka/scheduler/blob/master/docs/student-blanck%20error.png?raw=true)
 
-!["Appointment Cancellation](https://github.com/r1tka/scheduler/blob/master/docs/confirming-element.png?raw=true)
+!["Appointment Cancellation"](https://github.com/r1tka/scheduler/blob/master/docs/confirming-element.png?raw=true)
 
-!["Deleting Status"](https://github.com/r1tka/scheduler/blob/master/docs/deleting.png?raw=true
-)
+!["Deleting Status"](https://github.com/r1tka/scheduler/blob/master/docs/deleting.png?raw=true)
 
