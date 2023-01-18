@@ -46,12 +46,14 @@ npm run storybook
 
 ## Screenshots
 
-!["confirming-element"]https://github.com/r1tka/scheduler/blob/master/docs/confirming-element.png?raw=true
+!["Main Application View"](https://github.com/r1tka/scheduler/blob/master/docs/main-menu.png?raw=true)
 
-!["create-appointment"]https://github.com/r1tka/scheduler/blob/master/docs/create-appointment.png?raw=true
+!["Creation of a new appointment"](https://github.com/r1tka/scheduler/blob/master/docs/create-appointment.png?raw=true)
 
-!["deleting-element"]https://github.com/r1tka/scheduler/blob/master/docs/deleting.png?raw=true
+!["Blank student name"](https://github.com/r1tka/scheduler/blob/master/docs/student-blanck%20error.png?raw=true)
 
-!["main-menu"]https://github.com/r1tka/scheduler/blob/master/docs/main-menu.png?raw=true
+!["Appointment Cancellation](https://github.com/r1tka/scheduler/blob/master/docs/confirming-element.png?raw=true)
 
-!["student-blank-error"]https://github.com/r1tka/scheduler/blob/master/docs/student-blanck%20error.png?raw=true
+!["Deleting Status"](https://github.com/r1tka/scheduler/blob/master/docs/deleting.png?raw=true
+)
+
