@@ -21,3 +21,25 @@ npm test
 ```sh
 npm run storybook
 ```
+## Dependencies
+- axios
+- classnames
+- normalize.css
+- react "^16.9.0"
+- react-dom "^16.9.0"
+- react-scripts
+
+## devDependencies
+- babel/core
+- storybook/addon-actions
+- storybook/addon-backgrounds
+- storybook/addon-links
+- storybook/addons
+- storybook/react
+- testing-library/jest-dom
+- testing-library/react
+- testing-library/react-hooks "^3.4.1"
+- babel-loader
+- node-sass
+- prop-types
+- react-test-renderer "^16.9.0"
