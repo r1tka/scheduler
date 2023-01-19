@@ -71,7 +71,7 @@ export default function Appointment(props) {
           onCancel={() => transition(SHOW)}
         />
       }
-      {mode === SHOW && (
+      {mode === SHOW && props.interview && (
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}

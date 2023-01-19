@@ -47,7 +47,7 @@ npm run storybook
 ## Screenshots
 
 !["Main Application View"](https://github.com/r1tka/scheduler/blob/master/docs/main-menu.png?raw=true)
-
+ 
 !["Creation of a new appointment"](https://github.com/r1tka/scheduler/blob/master/docs/create-appointment.png?raw=true)
 
 !["Blank student name"](https://github.com/r1tka/scheduler/blob/master/docs/student-blanck%20error.png?raw=true)
