@@ -21,7 +21,13 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Scheduler-api
+
+Follow instructions specified in this !["scheduler-api repo"](https://github.com/lighthouse-labs/scheduler-api) provided by Lighthouse Labs
+
 ## Dependencies
+
 - axios
 - classnames
 - normalize.css
@@ -30,6 +36,7 @@ npm run storybook
 - react-scripts
 
 ## devDependencies
+
 - babel/core
 - storybook/addon-actions
 - storybook/addon-backgrounds
@@ -46,13 +53,18 @@ npm run storybook
 
 ## Screenshots
 
+### Main Application View
 !["Main Application View"](https://github.com/r1tka/scheduler/blob/master/docs/main-menu.png?raw=true)
- 
+
+### Creation of a new appointment 
 !["Creation of a new appointment"](https://github.com/r1tka/scheduler/blob/master/docs/create-appointment.png?raw=true)
 
+### Blank student name
 !["Blank student name"](https://github.com/r1tka/scheduler/blob/master/docs/student-blanck%20error.png?raw=true)
 
+### Appointment Cancellation
 !["Appointment Cancellation"](https://github.com/r1tka/scheduler/blob/master/docs/confirming-element.png?raw=true)
 
+### Deleting Status
 !["Deleting Status"](https://github.com/r1tka/scheduler/blob/master/docs/deleting.png?raw=true)
 
