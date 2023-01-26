@@ -1,4 +1,10 @@
 
+/*
+getAppontmentsForDay is a function used to get all appointments for
+a specific day. This is achieved by getting selected day from 
+days endpoint, and appointments for this day from appointments endpoint.
+ */
+
 function getAppointmentsForDay(state, dayName) {
   const days = state.days
   let appointmentsForDay = [];
@@ -20,6 +26,13 @@ function getAppointmentsForDay(state, dayName) {
   return appointmentsForDay;
 }
 
+/*
+getInterviewersForDay is a function used to get all interviewers for
+a specific day. This is achieved by getting selected day from 
+days endpoint, and interviewers for selected day from
+interviewers endpoint.
+ */
+
 function getInterviewersForDay(state, day) {
   let interviewersForDay = [];
   if (!state.interviewers) {
@@ -33,9 +46,13 @@ function getInterviewersForDay(state, day) {
       interviewersForDay.push(interviewers[element - 1]);
     });
   }
-  // console.log('interviewers:::::', interviewersForDay)
   return interviewersForDay;
 }
+
+/*
+getInterview is a function used to return interview object.
+With interviewer and student information.
+ */
 
 function getInterview(state, interview) {
   let result = { "student": null, "interviewer": null };
@@ -53,4 +70,5 @@ function getInterview(state, interview) {
     return null
   }
 };
+
 module.exports = { getAppointmentsForDay, getInterview, getInterviewersForDay }

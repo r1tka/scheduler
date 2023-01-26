@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Show({ interviewer, student, onEdit, onCancel }) {
-  //check if there is appointment by checking props
+  /* check if there is appointment by checking props */
   const name = interviewer ? interviewer.name : null;
   return (
     <main className="appointment__card appointment__card--show">

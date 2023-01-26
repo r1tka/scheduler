@@ -24,11 +24,11 @@ const EDIT = "EDIT";
 export default function Appointment({
   id, interview, interviewers, bookInterview, cancelInterview, ...props
 }) {
-  // use custom hook for changing modes
+  /* use custom hook for changing modes */
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
-  //saving student name and interviewer
+  /* saving student name and interviewer */
   function save(name, interviewer) {
     const interview = {
       student: name,

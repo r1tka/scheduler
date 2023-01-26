@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export default function useApplicationData() {
-  //set useState hook, default to Monday
+  /* set useState hook, default to Monday */
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -11,59 +11,8 @@ export default function useApplicationData() {
     interviewers: {}
   });
 
-  const setDay = day => setState({ ...state, day });
-  //boot bookInterview function, called upon creation of new appointment
-  function bookInterview(id, interview) {
-    //update appointments with a newly created appointment
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    //updating api with a new appointment
-    return axios.put(`/api/appointments/${id}`, { interview })
-      .then(() => {
-        if (state.appointments[id].interview === null) {
-          state.days.forEach((day) => {
-            if (day.name === state.day) {
-              day.spots--;
-            }
-          })
-        }
-        setState((prevState) => ({ ...prevState, days: state.days, appointments }));
-      })
-  }
-
-  function cancelInterview(id) {
-    //delete of existent interview
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    return (
-      //from api
-      Promise.resolve(axios.delete(`/api/appointments/${id}`))
-        .then(() => {
-          let daysList = state.days;
-          daysList.forEach((day) => {
-            if (day.name === state.day) {
-              day.spots++;
-            }
-          })
-          setState((prevState) => ({ ...prevState, days: daysList, appointments }));
-        })
-    )
-  }
-
   useEffect(() => {
-    // getting all needed data upon page opening
+    /* getting all needed data upon page opening */
     Promise.all([
       Promise.resolve(axios.get('/api/days')),
       Promise.resolve(axios.get('/api/appointments')),
@@ -78,6 +27,59 @@ export default function useApplicationData() {
       }));
     })
   }, [])
+
+
+  function setDay(day) { setState({ ...state, day }) }
+  /* bookInterview function, called upon creation of new appointment */
+
+  function bookInterview(id, interview) {
+    /* update appointments with a newly created appointment */
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    /* updating api with a new appointment */
+    return axios.put(`/api/appointments/${id}`, { interview })
+      .then(() => {
+        if (state.appointments[id].interview === null) {
+          state.days.forEach((day) => {
+            if (day.name === state.day) {
+              day.spots--;
+            }
+          })
+        }
+        setState((prevState) => ({ ...prevState, days: state.days, appointments }));
+      })
+  }
+
+  function cancelInterview(id) {
+    /* delete an existing interview */
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return (
+      /* delete from api */
+      Promise.resolve(axios.delete(`/api/appointments/${id}`))
+        .then(() => {
+          let daysList = state.days;
+          daysList.forEach((day) => {
+            if (day.name === state.day) {
+              day.spots++;
+            }
+          })
+          setState((prevState) => ({ ...prevState, days: daysList, appointments }));
+        })
+    )
+  }
 
   return { state, setDay, bookInterview, cancelInterview }
 }

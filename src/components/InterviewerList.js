@@ -9,12 +9,12 @@ export default function InterviewerList({
   interviewers, setInterviewer, ...props
 }) {
 
-  //check if prop passed in this component is not other then:
+  /* check if prop passed in this component is not other then: */
   InterviewerList.propTypes = {
     value: PropTypes.number,
     setInterviewer: PropTypes.func.isRequired
   };
-  //render InterviewerListItem
+  /* render InterviewerListItem */
   const list = interviewers.map((interviewer) => {
     const { id, name, avatar } = interviewer;
 

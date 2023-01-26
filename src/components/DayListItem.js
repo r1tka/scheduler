@@ -4,14 +4,14 @@ import "components/DayListItem.scss"
 
 export default function DayListItem({ selected, spots, name, setDay }) {
 
-  //different viws of days depending on spots left
+  /* different viws of days depending on spots left */
   let dayClass = className("day-list__item",
     {
       "day-list__item--selected": selected,
       "day-list__item--full": spots === 0
     })
 
-  //specific text based on spots left
+  /* specific text based on spots left */
   const formatSpots = () =>
     spots === 0
       ? 'no spots remaining'
