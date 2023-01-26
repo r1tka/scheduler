@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function Show(props) {
+export default function Show({ interviewer, student, onEdit, onCancel }) {
   //check if there is appointment by checking props
-  const name = props.interviewer ? props.interviewer.name : null;
+  const name = interviewer ? interviewer.name : null;
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
-        <h2 className="text--regular">{props.student}</h2>
+        <h2 className="text--regular">{student}</h2>
         <section className="interviewer">
           <h4 className="text--light">Interviewer</h4>
           <h3 className="text--regular">{name}</h3>
@@ -18,13 +18,13 @@ export default function Show(props) {
             className="appointment__actions-button"
             src="images/edit.png"
             alt="Edit"
-            onClick={props.onEdit}
+            onClick={onEdit}
           />
           <img
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
-            onClick={props.onCancel}
+            onClick={onCancel}
           />
         </section>
       </section>

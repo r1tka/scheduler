@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
-export default function Form(props) {
+export default function Form({ onCancel, onSave, ...props }) {
   /* creating hooks */
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -16,7 +16,7 @@ export default function Form(props) {
   //cancel button
   const cancel = () => {
     reset();
-    props.onCancel();
+    onCancel();
   };
   //check if student name is not blank
   function validate() {
@@ -31,7 +31,7 @@ export default function Form(props) {
     }
 
     setError("");
-    props.onSave(name, interviewer);
+    onSave(name, interviewer);
   }
 
   return (

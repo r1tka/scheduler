@@ -18,7 +18,6 @@ export default function Application() {
     cancelInterview
   } = useApplicationData();
   //selectors
-  // console.log('state::::', state)
   const appointments = getAppointmentsForDay(state, state.day);
 
   const interviewers = getInterviewersForDay(state, state.day);
