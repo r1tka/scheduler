@@ -24,7 +24,7 @@ npm run storybook
 
 ## Scheduler-api
 
-Follow instructions specified in this !["scheduler-api repo"](https://github.com/lighthouse-labs/scheduler-api) provided by Lighthouse Labs
+Follow instructions specified in this [scheduler-api repo](https://github.com/lighthouse-labs/scheduler-api) provided by Lighthouse Labs
 
 ## Dependencies
 
