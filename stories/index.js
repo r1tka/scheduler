@@ -93,13 +93,13 @@ storiesOf("DayList", module)
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
   })
   .add("Monday", () => (
-    <DayList days={days} value={"Monday"} onChange={action("setDay")} />
+    <DayList days={days} day={"Monday"} setDay={action("setDay")} />
   ))
   .add("Tuesday", () => (
-    <DayList days={days} value={"Tuesday"} onChange={action("setDay")} />
+    <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
   ))
   .add("Wednesday", () => (
-    <DayList days={days} value={"Wednesday"} onChange={action("setDay")} />
+    <DayList days={days} day={"Wednesday"} setDay={action("setDay")} />
   ));
 
 /* stories of InterviewerListItem component */
@@ -146,34 +146,15 @@ storiesOf("InterviewerList", module)
   .add("Selected", () => (
     <InterviewerList
       interviewers={interviewers}
-      value={3}
-    />
-  ))
-  .add("Clickable", () => (
-    <InterviewerList
-      interviewers={interviewers}
-      onChange={action("setInterviewer")}
-    />
-  ))
-
-  .add("Initial", () => (
-    <InterviewerList
-      interviewers={interviewers}
-    />
-  ))
-  .add("Selected", () => (
-    <InterviewerList
-      interviewers={interviewers}
       interviewer={3}
     />
   ))
   .add("Clickable", () => (
-    <InterviewerListItem
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      setInterviewer={() => action("setInterviewer")(interviewer.id)}
+    <InterviewerList
+      interviewers={interviewers}
+      setInterviewer={action("setInterviewer")}
     />
-  ));
+  ))
 
 /* stories of Appointment component */
 
@@ -219,7 +200,7 @@ storiesOf("Appointment", module)
   ))
   .add("Edit", () => (
     <Form
-      student={"Margaryta Lanova"}
+      name={"Margaryta Lanova"}
       interviewer={2}
       interviewers={interviewers}
       onSave={action("onSave")}
