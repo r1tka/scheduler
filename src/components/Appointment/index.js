@@ -85,6 +85,7 @@ export default function Appointment(props) {
           onSave={(name, interviewer) => {
             save(name, interviewer);
           }}
+          onCancel={back}
         />
       }
       {mode === SAVING &&
